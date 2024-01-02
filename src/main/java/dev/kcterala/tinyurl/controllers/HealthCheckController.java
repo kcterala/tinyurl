@@ -12,7 +12,6 @@ import java.util.concurrent.ExecutorService;
 public class HealthCheckController {
     @GetMapping
     public ResponseEntity<String> healthCheck() {
-        System.out.println("Build should fail")
         return ResponseEntity.ok("Hi, How are you feeling today?");
     }
 }
