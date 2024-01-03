@@ -27,7 +27,8 @@ services:
     ports:
       - "8081:8080"
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5431/tinyurl
       SPRING_DATASOURCE_USERNAME: postgres
