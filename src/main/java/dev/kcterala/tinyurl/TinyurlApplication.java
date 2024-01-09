@@ -11,8 +11,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class TinyurlApplication {
 
 	public static void main(String[] args) {
+		System.setProperty("spring.devtools.restart.enabled", "false");
 		SpringApplication.run(TinyurlApplication.class, args);
 	}
+
 
 	@Bean
 	public PasswordEncoder bcrptPasswordEncoder() {
