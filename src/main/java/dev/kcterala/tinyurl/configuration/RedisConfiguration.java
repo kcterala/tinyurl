@@ -1,5 +1,6 @@
 package dev.kcterala.tinyurl.configuration;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -12,11 +13,17 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 @Configuration
 public class RedisConfiguration {
 
+    @Value("${spring.redis.host}")
+    private String hostName;
+
+    @Value("${spring.redis.port}")
+    private int port;
+
     @Bean
     public JedisConnectionFactory jedisConnectionFactory() {
         RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration();
-        redisStandaloneConfiguration.setHostName("localhost");
-        redisStandaloneConfiguration.setPort(6379);
+        redisStandaloneConfiguration.setHostName(hostName);
+        redisStandaloneConfiguration.setPort(port);
         return new JedisConnectionFactory(redisStandaloneConfiguration);
     }
 

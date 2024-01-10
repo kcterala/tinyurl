@@ -19,6 +19,15 @@ services:
     ports:
       - "5431:5432"
 
+  redis:
+    container_name: redis
+    image: redis/redis-stack
+    expose:
+      - "6379"
+    ports:
+      - "8001:8001"
+      - "6379:6379"
+
   tinyurl:
     container_name: tinyurl
     build:
@@ -26,12 +35,13 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8081:8080"
+    links:
+      - redis
+      - postgres
     depends_on:
       postgres:
         condition: service_healthy
     environment:
+      SERVER_PORT: 8080
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/tinyurl
-      SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: postgres
-      SPRING_JPA_HIBERNATE_DDL_AUTO: update
-      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
+      SPRING_REDIS_HOST: redis
