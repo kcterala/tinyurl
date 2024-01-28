@@ -8,9 +8,13 @@ spring:
       ddl-auto: none
       show-sql: true
       dialect: org.hibernate.dialect.PostgreSQLDialect
-  redis:
-    host: ${REDIS_HOST:localhost}
-    port: 6379
+
+
+redis:
+  host: ${REDIS_HOST:localhost}
+  port: ${REDIS_PORT:6379}
+  user: ${REDIS_USERNAME:username}
+  password: ${REDIS_PASSWORD:password}
 
 server:
   port: 8081
