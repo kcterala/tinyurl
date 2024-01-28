@@ -13,9 +13,4 @@ public record CreateUserResponse (
         this(user.getId(), user.getEmail(), user.getUpdatedAt());
     }
 
-    public CreateUserResponse(final int id, final String username, final LocalDateTime lastUpdatedTime) {
-        this.id = id;
-        this.username = username;
-        this.lastUpdatedTime = lastUpdatedTime;
-    }
 }

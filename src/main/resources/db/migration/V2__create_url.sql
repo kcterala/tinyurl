@@ -1,0 +1,7 @@
+CREATE TABLE url (
+  id INTEGER PRIMARY KEY NOT NULL,
+   short_url VARCHAR(255),
+   long_url VARCHAR(255),
+   user_id INTEGER,
+   CONSTRAINT FK_URL_ON_USER FOREIGN KEY(user_id) REFERENCES users(id)
+);

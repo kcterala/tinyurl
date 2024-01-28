@@ -38,6 +38,10 @@ public class User {
     @Column
     private List<Session> sessions;
 
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Url> urls;
+
     public void setEmail(final String email) {
         this.email = email;
     }
