@@ -17,7 +17,7 @@ redis:
   password: ${REDIS_PASSWORD:password}
 
 server:
-  port: 8080
+  port: 8081
   compression:
     enabled: true
     mime-types: application/json

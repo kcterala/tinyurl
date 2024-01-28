@@ -18,7 +18,7 @@ public class RedisSessionService {
     public void storeSessionToken(String token, UserInfo userInfo) {
         String redisKey = USER_PREFIX + token;
         redisTemplate.opsForValue().set(redisKey, userInfo);
-        redisTemplate.expire(redisKey, 3, TimeUnit.MINUTES);
+        redisTemplate.expire(redisKey, 40, TimeUnit.MINUTES);
     }
 
     public UserInfo getSessionToken(String token) {

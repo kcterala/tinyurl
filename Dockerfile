@@ -13,6 +13,6 @@ RUN ./gradlew --no-daemon clean build -x test
 FROM bellsoft/liberica-runtime-container:jre-17-slim-musl
 WORKDIR /app
 COPY --from=builder /app/build/libs/application.jar /app/application.jar
-EXPOSE 8080
+EXPOSE 8081
 
 ENTRYPOINT ["java", "-jar", "/app/application.jar"]
