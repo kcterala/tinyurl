@@ -66,7 +66,7 @@ public class UserService {
             throw new InvalidTokenException();
         }
 
-        sessionTokenManager.logoutSession(email, token);
+        sessionTokenManager.removeSession(token);
     }
 
 }

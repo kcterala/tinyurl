@@ -1,7 +1,7 @@
 package dev.kcterala.tinyurl.interceptors;
 
 import dev.kcterala.tinyurl.exceptions.InvalidTokenException;
-import dev.kcterala.tinyurl.session.RedisSessionService;
+import dev.kcterala.tinyurl.session.SessionTokenManager;
 import dev.kcterala.tinyurl.session.UserInfo;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -13,9 +13,10 @@ import java.lang.reflect.Method;
 
 @Component
 public class AuthInterceptor implements HandlerInterceptor {
-    private final RedisSessionService sessionService;
-    public AuthInterceptor(RedisSessionService sessionService) {
-        this.sessionService = sessionService;
+    private final SessionTokenManager sessionTokenManager;
+
+    public AuthInterceptor(final SessionTokenManager sessionTokenManager) {
+        this.sessionTokenManager = sessionTokenManager;
     }
 
     @Override
@@ -32,7 +33,7 @@ public class AuthInterceptor implements HandlerInterceptor {
             }
 
             String sessionToken = authHeader.substring(7);
-            UserInfo userInfo = sessionService.getSessionToken(sessionToken);
+            UserInfo userInfo = sessionTokenManager.getUserInfo(sessionToken);
             if (userInfo == null) {
                 throw new InvalidTokenException();
             }
