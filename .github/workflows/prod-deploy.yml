@@ -28,6 +28,6 @@ jobs:
           application_name: tinyurl
           environment_name: tinyurl-env
           region: ap-south-1
-          version_label: 0.6
+          version_label: ${{ github.sha }}
           deployment_package: ./build/libs/application.jar
           wait_for_environment_recovery: 240
