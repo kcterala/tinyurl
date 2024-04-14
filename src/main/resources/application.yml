@@ -1,23 +1,16 @@
 spring:
   datasource:
-    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5431}/${DB_NAME:tinyurl}
-    username: ${DB_USERNAME:postgres}
-    password: ${DB_PASSWORD:postgres}
+    url: jdbc:postgresql://${RDS_HOSTNAME:localhost}:${RDS_PORT:5431}/${RDS_DB_NAME:tinyurl}
+    username: ${RDS_USERNAME:postgres}
+    password: ${RDS_PASSWORD:postgres}
   jpa:
     hibernate:
       ddl-auto: none
       show-sql: true
       dialect: org.hibernate.dialect.PostgreSQLDialect
 
-
-redis:
-  host: ${REDIS_HOST:localhost}
-  port: ${REDIS_PORT:6379}
-  user: ${REDIS_USERNAME:username}
-  password: ${REDIS_PASSWORD:password}
-
 server:
-  port: 8081
+  port: 5000
   compression:
     enabled: true
     mime-types: application/json

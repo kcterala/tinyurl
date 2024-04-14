@@ -9,10 +9,7 @@ import dev.kcterala.tinyurl.session.UserInfo;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/urls")
@@ -29,6 +26,15 @@ public class UrlController {
                                                              @RequestBody CreateUrlRequest createUrlRequest) throws UrlNotValidException, UserNotFoundException {
         final UserInfo userInfo = (UserInfo) request.getAttribute("user");
         final CreateUrlResponse createUrlResponse = urlService.createRandomUrl(userInfo, createUrlRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createUrlResponse);
+    }
+
+    @PostMapping("/{shortCode}")
+    public ResponseEntity<CreateUrlResponse> createSpecificShortUrl(HttpServletRequest request,
+                                                                    @RequestBody CreateUrlRequest createUrlRequest,
+                                                                    @PathVariable String shortCode) throws UrlNotValidException, UserNotFoundException {
+        final UserInfo userInfo = (UserInfo) request.getAttribute("user");
+        final CreateUrlResponse createUrlResponse = urlService.createSpecificUrl(userInfo, createUrlRequest, shortCode);
         return ResponseEntity.status(HttpStatus.CREATED).body(createUrlResponse);
     }
 

@@ -52,6 +52,24 @@ public class UrlService {
         return new CreateUrlResponse(longUrl, shortCode);
     }
 
+    public CreateUrlResponse createSpecificUrl(final UserInfo userInfo, final CreateUrlRequest createUrlRequest, final String shortCode) throws UserNotFoundException, UrlNotValidException {
+        final int userId = userInfo.userId;
+        final Optional<User> optionalUser = userRepository.findById(userId);
+        if (optionalUser.isEmpty()) {
+            throw new UserNotFoundException();
+        }
+        final User user = optionalUser.get();
+
+        final String longUrl = createUrlRequest.longUrl();
+        validateUrl(longUrl);
+
+
+        final int randomNumber = LinkUtils.decodeShortCode(shortCode);
+        final Url url = new Url(randomNumber, shortCode, longUrl, user);
+        urlRepository.save(url);
+        return new CreateUrlResponse(longUrl, shortCode);
+    }
+
     private void validateUrl(final String longUrl) throws UrlNotValidException {
         try {
             new URL(longUrl).toURI();
