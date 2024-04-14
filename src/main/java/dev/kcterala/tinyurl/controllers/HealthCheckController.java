@@ -12,6 +12,6 @@ public class HealthCheckController {
     @GetMapping
     @Unauthenticated
     public ResponseEntity<String> healthCheck() {
-        return ResponseEntity.ok("Hi, How are you feeling today?");
+        return ResponseEntity.ok("Hi, I am listening");
     }
 }
