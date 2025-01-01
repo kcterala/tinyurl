@@ -24,8 +24,7 @@ public class Session {
     public LocalDateTime expirationTime;
 
 
-    public Session() {
-    }
+    public Session() {}
 
     public Session(final String sessionToken, final int userId) {
         this.sessionToken = sessionToken;

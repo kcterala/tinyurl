@@ -34,9 +34,6 @@ public class AuthInterceptor implements HandlerInterceptor {
 
             String sessionToken = authHeader.substring(7);
             UserInfo userInfo = sessionTokenManager.getUserInfo(sessionToken);
-            if (userInfo == null) {
-                throw new InvalidTokenException();
-            }
             request.setAttribute("user", userInfo);
         }
         return true;

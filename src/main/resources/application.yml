@@ -10,7 +10,7 @@ spring:
       dialect: org.hibernate.dialect.PostgreSQLDialect
 
 server:
-  port: 5000
+  port: 8080
   compression:
     enabled: true
     mime-types: application/json
