@@ -1,14 +1,4 @@
 # Tiny URL
-# Will use
-### Liquibase or flyway
-### Auth (eventually use Oauth 2.0)
-
-# Don't know if they are useful 
-### Redis 
-### Messaging queue
-
-
-## Development
 
 ### Deploy everything (with Docker)
 
